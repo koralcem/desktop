@@ -124,6 +124,7 @@ export class ReleaseNotes extends React.Component<IReleaseNotesProps, {}> {
     return (
       <div className="container">
         <div className="column">
+          {release.pretext}
           {this.renderList(release.bugfixes, 'Bugfixes')}
           {this.renderList(release.enhancements, 'Enhancements')}
           {this.renderList(release.other, 'Other')}
@@ -132,26 +133,26 @@ export class ReleaseNotes extends React.Component<IReleaseNotesProps, {}> {
     )
   }
 
-  private drawTwoColumnLayout(release: ReleaseSummary): JSX.Element {
-    return (
-      <div className="container">
-        <div className="column">
-          {this.renderList(release.enhancements, 'Enhancements')}
-          {this.renderList(release.other, 'Other')}
-        </div>
-        <div className="column">
-          {this.renderList(release.bugfixes, 'Bugfixes')}
-        </div>
-      </div>
-    )
-  }
+  // private drawTwoColumnLayout(release: ReleaseSummary): JSX.Element {
+  //   return (
+  //     <div className="container">
+  //       <div className="column">
+  //         {this.renderList(release.enhancements, 'Enhancements')}
+  //         {this.renderList(release.other, 'Other')}
+  //       </div>
+  //       <div className="column">
+  //         {this.renderList(release.bugfixes, 'Bugfixes')}
+  //       </div>
+  //     </div>
+  //   )
+  // }
 
   public render() {
     const release = this.props.newRelease
 
     const contents =
       release.enhancements.length > 0 && release.bugfixes.length > 0
-        ? this.drawTwoColumnLayout(release)
+        ? this.drawSingleColumnLayout(release)
         : this.drawSingleColumnLayout(release)
 
     return (
